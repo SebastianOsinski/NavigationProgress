@@ -84,17 +84,4 @@ extension ProgressNavigationController: UINavigationControllerDelegate {
             }
         )
     }
-    
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        // Initial case, first push
-        // It's also triggered when we pop to first view controller, but it does not bother us
-        guard viewControllers.count == 1 else { return }
-
-        let flowProgress = (viewController as? FlowProgressReporting)?.flowProgress
-        let progressViewTargetAlpha: CGFloat = flowProgress == nil ? 0.0 : 1.0
-        
-        progressView.alpha = progressViewTargetAlpha
-        // Reset progress to 0 if first view controller is not FlowProgressReporting
-        progressView.progress = flowProgress ?? 0.0
-    }
 }
